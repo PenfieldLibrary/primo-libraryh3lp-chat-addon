@@ -16,111 +16,113 @@ This is an add-on for the [libraryh3lp](https://libraryh3lp.com/) chat. It adds 
 
 ## Installation
 
-1. Assuming you've installed and are using [primo-explore-devenv](https://github.com/ExLibrisGroup/primo-explore-devenv).
+1. Replace the custom.js file in your primo customization package.
 
-2. Navigate to your template/central package root directory. For example:
+2. If you are adding to an existing custom.js file copy only the follow from the src file:
     ```
-    cd primo-explore/custom/MY_VIEW_ID
+    var popupDelaySeconds = 60;
+
+    // START - Chat widget
+    .
+    .
+    .
+    // END - Chat widget
     ```
-3. If you do not already have a package.json file in this directory, create one:
+3. copy the css code into your custom1.css file in your primo customization package css file:
     ```
-    npm init -y
-    ```
-4. Install this package:
-    ```
-    npm install primo-explore-libraryh3lp-widget --save-dev
+    /*-----------  chat tab  ---------------------*/
+    .
+    .
+    .
+    /*----Ask a Librarian Chat box-----*/
+    .
+    .
+    .
     ```
 
-## Usage
+## Adding your libraryh3lp credentials and customizing the js file
 
-Once installed, inject `libraryh3lpWidget` as a dependency:
+Update all URL instances.<br/>Replace the jid/xxxx with your institution's name for libraryh3lp.<br/>
+Example - jid/penfield_reference:
 
 ```js
-let app = angular.module('viewCustom', ['libraryh3lpWidget'])
+url: 'https://libraryh3lp.com/presence/jid/penfield_reference/chat.libraryh3lp.com/js?cd=show_presence'
 ```
 
-**Note:** If you're using the --browserify build option, you will need to first import the module with:
-
+Replace the libraryh3lp URL with your institution's libraryh3lp URL.
 ```js
-import 'primo-explore-libraryh3lp-widget';
+ src="https://us.libraryh3lp.com/chat/penfield_reference@chat.libraryh3lp.com?skin=11342"
 ```
 
-You'll need to configure the module by passing it an object as an angular `constant`:
-
-| name | type | usage |
-|------|-------------|--------|
-|`mode`| string | `'script'` or `'iframe`'`, identifying the type of libraryh3lp insertion method to use (see libraryh3lp documentation). |
-| `url` | string | the iframe or javascript url for your instance of libraryh3lp |
-| `prompt` | string | the text for the prompt when closed |
-| `icon` | object | defines the icon for the link. must be chosen from <https://material.io/icons/>. you need to specify both the name of the action "set" (see link) and the icon itself, in the form "ic_person_outline_24px". note that all icons do not work so you may have to experiment some |
-
-### Example
-
-#### `mode: iframe`
+For the chat tab text, customize "Ask a Librarian" and "Chat with a Librarian" with your own labels.
 ```js
-app.constant('libraryh3lpWidgetConfig', {
-  mode: 'iframe',
-  url: 'https://us.libraryh3lp.com/chat/ask@chat.libraryh3lp.com?skin=1',
-  prompt: 'Chat with us',
-  icon: {
-    set: 'communication',
-    icon: 'ic_chat_24px'
-  }
-});
+if(response.data.match("unavailable")){
+   $scope.myAskChatLabel =  "Ask a Librarian";
+ }else{
+   $scope.myAskChatLabel = "Chat with a Librarian";
+ }
 ```
 
-#### `mode: script`
-```js
-app.constant('libraryh3lpWidgetConfig', {
-  mode: 'script',
-  // 'http' or 'https' will be handled based on the protocol of your Primo server.
-  url: 'libraryh3lp.com/js/libraryh3lp.js?7516',
-  prompt: 'Chat with us',
-  icon: {
-    set: 'communication',
-    icon: 'ic_chat_24px'
-  }
-});
+### CSS Styles customization
+Finally edit the CSS to stylize the colors, size and location:
 
-app.run(runBlock);
-
-runBlock.$inject = [
-  'libraryh3lpInjectionService',
-];
-
-function runBlock(libraryh3lpInjectionService) {
-  libraryh3lpInjectionService.injectScript();
-}
-```
-
-### Styles
-
-Finally you'll need to add the following lines to your CSS to stylize the colors:
-
+#### `chat tab`
+This hadles the tab 'button'
 ```css
-#chat_widget_icon svg {
-  fill: yourTextColor;
+div.trigger.right {
+	  position:fixed;
+      right:120px;
+	  top: 550px !important;	 
+      text-decoration: none;
+      display: inline-block;  
+	  background: #235937;
+	  border: 1px solid #235937;
+	  border-bottom: 0;
+	  border-radius: 0.5em 0.5em 0 0;
+	  -moz-border-radius: 0.5em 0.5em 0 0;
+	  -webkit-border-radius: 0.5em 0.5em 0 0;
+	  bottom: 0px;
+	  color: #FFFFFF;
+	  cursor: pointer;
+	  line-height: 150%;
+	  padding: 3px 10px 3px 10px;
+	  position: fixed;
+	  text-align: center;
+	  z-index: 1000;
+	  min-width:10em;
+	  font-size:18px;
+	  letter-spacing: 1px;
+	  font-family: Helvetica;
 }
 
-.chat-tab{
-  color: yourTextColor;
-  background: yourBackgroundColor;
-}
 ```
 
-In order to add focus styling for better visual accessibility, you can use the following CSS to stylize this:
-
-```CSS
-.chat-tab:focus {
-  -webkit-box-shadow: inset 0 0 0 2px yourFocusColor;
-  box-shadow: inset 0 0 0 2px yourFocusColor;
-  overflow: -moz-hidden-unscrollable;
-}
-
-.chat-close:focus {
-    -webkit-box-shadow: inset 0 0 0 2px yourFocusColor;
-    box-shadow: inset 0 0 0 2px yourFocusColor;
-    overflow: -moz-hidden-unscrollable;
-  }
+#### `Ask a Librarian Chat box`
+This customizes the iframe where the chat box lays on. It does not change the css for your  chat box
+```css
+.libraryh3lp {
+	position:fixed;
+     right:120px;
+	 top: 250px !important;	 
+     text-decoration: none;
+     display: inline-block;  
+	  background: #235937;
+	  border: 1px solid #235937;
+	  border-bottom: 0;
+	  border-radius: 0.5em 0.5em 0 0;
+	  -moz-border-radius: 0.5em 0.5em 0 0;
+	  -webkit-border-radius: 0.5em 0.5em 0 0;
+	  bottom: 0px;
+	  color: #FFFFFF;
+	  cursor: pointer;
+	  line-height: 150%;
+	  padding: 3px 10px 3px 10px;
+	  position: fixed;
+	  text-align: center;
+	  z-index: 1000;
+	  min-width:10em;
+	  font-size:18px;
+	  letter-spacing: 1px;
+	  font-family:  Helvetica;
 }
 ```
