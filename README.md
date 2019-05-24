@@ -9,7 +9,7 @@ This is an add-on for the [libraryh3lp](https://libraryh3lp.com/) chat. It adds 
 
 ![screenshot1](https://github.com/PenfieldLibrary/primo-libraryh3lp-chat-addon/raw/master/.docs/primo-chat-tab.jpg)
 
-![screenshot2](https://github.com/PenfieldLibrary/primo-libraryh3lp-chat-addon/raw/master/.docs/primo-chat-windows.jpg)
+![screenshot2](https://github.com/PenfieldLibrary/primo-libraryh3lp-chat-addon/raw/master/.docs/primo-chat-window.jpg)
 
 ![gif](https://github.com/PenfieldLibrary/primo-libraryh3lp-chat-addon/raw/master/.docs/primo-chat-window.gif)
 
