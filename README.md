@@ -63,6 +63,10 @@ if(response.data.match("unavailable")){
  }
 ```
 
+Replace the offline redirect url with your own. We use our 'ask a librarian' page when chat is unavailable 
+```js
+$window.open('https://www.oswego.edu/library/ask-librarian', '_blank');
+```
 ### CSS Styles customization
 Finally edit the CSS to stylize the colors, size and location:
 
