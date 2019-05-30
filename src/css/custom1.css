@@ -46,11 +46,10 @@ div.trigger.right:hover {
 
 /*----Ask a Librarian Chat box-----*/
 .libraryh3lp {
-	position:fixed;
-     right:120px;
-	 top: 250px !important;	 
-     text-decoration: none;
-     display: inline-block;  
+	  position:fixed;
+     	  right:120px;
+     	  text-decoration: none;
+     	  display: inline-block;  
 	  background: #235937; 
 	  border: 1px solid #235937;
 	  border-bottom: 0;
