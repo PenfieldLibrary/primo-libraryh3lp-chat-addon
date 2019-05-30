@@ -14,10 +14,9 @@ div.trigger {
 
 div.trigger.right {
 	  position:fixed;
-      right:120px;
-	  top: 550px !important;	 
-      text-decoration: none;
-      display: inline-block;  
+      	  right:120px;	 
+          text-decoration: none;
+      	  display: inline-block;  
 	  background: #235937; 
 	  border: 1px solid #235937;
 	  border-bottom: 0;
@@ -39,7 +38,6 @@ div.trigger.right {
 }
 
 div.trigger.right:hover {
-	  top: 540px !important;
 }
   
 @media screen and (min-width: 0px) and (max-width: 960px) {
